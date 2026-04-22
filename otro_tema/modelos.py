@@ -18,3 +18,13 @@ def polinomial_simple(x_data, y_data):
     coeficientes = sl.eliminacion_DD(A, y_data)
     Polinomio = sum(coeficientes[i] * (x**i) for i in range(len(x_data)))
     return Polinomio
+
+def lagrange(x_data, y_data):
+    sumPolinomio = 0
+    for i in range(len(x_data)):
+        Li = 1
+        for j in range(len(x_data)):
+            if j != i:
+                Li *= (x-x_data[j]) / (x_data[i]-x_data[j])
+        sumPolinomio += Li*y_data[i]
+    return sp.expand(sumPolinomio)
